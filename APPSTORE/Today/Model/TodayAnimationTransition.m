@@ -64,7 +64,7 @@
     [containerView addSubview:toVC.view];
 
     
-    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionTransitionNone animations:^{
+    [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.70 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         toVC.view.frame = [UIScreen mainScreen].bounds;
         toVC.scrollView.imageView.frame = CGRectMake(toVC.scrollView.imageView.frame.origin.x, toVC.scrollView.imageView.frame.origin.y,[UIScreen mainScreen].bounds.size.width, 500);
         toVC.closeBtn.alpha = 1;
@@ -86,7 +86,7 @@
     TodayTableVIewCell * selectedCell = toVC.selectedCell;
 
     //执行动画缩进
-    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionTransitionNone animations:^{
+    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:0.85 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         CGRect frame = [selectedCell convertRect:selectedCell.bgBackView.frame toView:toVC.view];
         fromVC.view.frame = frame;
         fromVC.view.layer.cornerRadius = 15;

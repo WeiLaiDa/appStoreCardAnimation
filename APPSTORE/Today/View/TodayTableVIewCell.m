@@ -21,12 +21,8 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
-    if (self) {
-        _animator = [[UIViewPropertyAnimator alloc] initWithDuration:0.2 curve:UIViewAnimationCurveEaseInOut animations:^{
-            self.transform = CGAffineTransformMakeScale(0.95, 0.95);
-        }];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         [self setupUI];
     }
     return self;
@@ -83,31 +79,20 @@
 - (void)jn_animate:(BOOL)highlight
 {
     if (highlight) {
-        [UIView animateWithDuration:0.45 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        [UIView animateWithDuration:0.45 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.95);
         } completion:^(BOOL finished) {
             
         }];
     }
     else{
-        [UIView animateWithDuration:0.45 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        [UIView animateWithDuration:0.45 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
             self.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             
         }];
     }
  
-}
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-    UIView *view = [super hitTest:point withEvent:event];
-        if ([view isKindOfClass:[UIButton class]]) {
-            return view;
-        }
-        if ([view isDescendantOfView:self]) {
-            return self;
-        }
-        return self;
 }
 
 

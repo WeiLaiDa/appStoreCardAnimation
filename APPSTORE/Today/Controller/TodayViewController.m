@@ -35,7 +35,7 @@ static NSString * const TodayTableVIewCellID = @"TodayTableVIewCell";
     self.tableView.rowHeight = 440;
     self.tableView.backgroundColor = UIColor.grayColor;
     [self.tableView registerClass:[TodayTableVIewCell class] forCellReuseIdentifier:TodayTableVIewCellID];
-
+    self.tableView.delaysContentTouches = NO;
     [self.view addSubview:self.tableView];
 }
 
