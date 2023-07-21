@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DetailScrollView : UIScrollView
+@interface DetailScrollView : UIScrollView<UIScrollViewDelegate>
 
 @property (nonatomic ,strong)UIView * bgBackView;
 @property (nonatomic ,strong)UIImageView * imageView;

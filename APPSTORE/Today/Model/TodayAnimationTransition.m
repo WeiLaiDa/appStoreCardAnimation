@@ -86,7 +86,7 @@
     TodayTableVIewCell * selectedCell = toVC.selectedCell;
 
     //执行动画缩进
-    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:0.85 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+    [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.70 initialSpringVelocity:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
         CGRect frame = [selectedCell convertRect:selectedCell.bgBackView.frame toView:toVC.view];
         fromVC.view.frame = frame;
         fromVC.view.layer.cornerRadius = 15;
@@ -102,9 +102,21 @@
     //让滑动中的scrollView停止滑动
     [fromVC.scrollView setContentOffset:fromVC.scrollView.contentOffset animated:NO];
     //让scrollView回到顶部
-    [UIView animateWithDuration:0.35 animations:^{
-        fromVC.scrollView.contentOffset = CGPointMake(0, 0);
-    }];
+    CGRect startFrame = CGRectZero;
+    CGRect endFrame = CGRectZero;
+    if(fromVC.scrollView.contentOffset.y > 500){
+        startFrame = [fromVC.view convertRect:CGRectMake(0, -500, fromVC.view.frame.size.width, 500) toView:fromVC.scrollView];
+        endFrame = CGRectMake(startFrame.origin.x, startFrame.origin.y + 500, startFrame.size.width, startFrame.size.height);
+    }else{
+        startFrame = fromVC.scrollView.bgBackView.frame;
+        endFrame = CGRectMake(startFrame.origin.x, startFrame.origin.y + fromVC.scrollView.contentOffset.y, startFrame.size.width, startFrame.size.height);
+    }
+    
+    
+    fromVC.scrollView.bgBackView.frame = startFrame;
+    [UIView animateWithDuration:0.45 delay:0 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+        fromVC.scrollView.bgBackView.frame = endFrame;
+    } completion:nil];
     
 }
 
